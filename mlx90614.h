@@ -49,5 +49,39 @@ typedef struct {
 
 } mlx90614_handle_t;
 
+/**
+ * Configures the emissivity to be used during the calculation of the object temperature. Must be in the range between
+ * 0.0 and 1.0. The MLX90614 comes with a default configuration of 1.0.
+ *
+ * @param handle The handle to the MLX90614.
+ * @param emissivity The emissivity to configure.
+ * @return True on success, false otherwise.
+ */
+bool mlx90614_configure_emissivity(mlx90614_handle_t *handle, float emissivity);
+
+/**
+ * Reads the current ambient temperature.
+ *
+ * @param handle The handle to the MLX90614.
+ * @param temperature Pointer to a memory location to store the temperature.
+ * @return True on success, false otherwise.
+ */
 bool mlx90614_read_ambient_temperature(mlx90614_handle_t *handle, float *temperature);
+
+/**
+ * Reads the current object temperature.
+ *
+ * @param handle The handle to the MLX90614.
+ * @param temperature Pointer to a memory location to store the temperature.
+ * @return True on success, false otherwise.
+ */
 bool mlx90614_read_object_temperature(mlx90614_handle_t *handle, float *temperature);
+
+/**
+ * Send the MLX90614 to it's sleep mode. Attention! The device cannot be used afterwards before a power on reset was
+ * performed.
+ *
+ * @param handle The handle to the MLX90614.
+ * @return True on success, false otherwise.
+ */
+bool mlx90614_sleep(mlx90614_handle_t *handle);
